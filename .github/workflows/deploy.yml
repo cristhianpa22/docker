@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD}}
 
       - name:  Construir y subir imagen 
-        uses: docker/build-push-action@v5gi
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
