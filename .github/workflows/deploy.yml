@@ -1,0 +1,29 @@
+name: publicar imagen en dockerhub
+
+on:
+  push:
+    branches: ["main"]
+  
+
+jobs: 
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descagar codigo
+        uses: actions/checkout@v3
+      
+      -name: Iniciar sesión en Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME}}
+          passwod: ${{ secrets.DOCKER_PASSWORD}}
+
+      - name:  Construir y subir imagen 
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: cristhianpa22/my-app-app_backend:latest
+
+
+  
