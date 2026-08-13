@@ -41,8 +41,7 @@ services:
     networks:
       - red-cba
     depends_on:
-      servidor-bd:
-        condition: service_healthy
+      - servidor-bd:
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://localhost:5050/ || exit 1" ]
       interval: 10s
