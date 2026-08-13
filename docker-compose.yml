@@ -48,7 +48,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-uptime-kuma:
+  uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
     restart: always
