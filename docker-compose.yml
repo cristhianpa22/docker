@@ -68,7 +68,5 @@ networks:
 volumes:
   mysql-data:
     name: mysql-data
-
-volumes:
   uptime-kuma-data:
     name: uptime-kuma-data
