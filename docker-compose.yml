@@ -48,6 +48,17 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    networks:
+      - red-cba
+
   
 
 networks:
@@ -57,3 +68,7 @@ networks:
 volumes:
   mysql-data:
     name: mysql-data
+
+volumes:
+  uptime-kuma-data:
+    name: uptime-kuma-data
