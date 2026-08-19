@@ -30,7 +30,7 @@ services:
       retries: 3
 
   app_backend:
-    build: .
+    image: cristhianpa22/my-app-app_backend:latest
     container_name: app-backend-ejemplo
     volumes:
       - .:/home/capsdevp/Documentos/workspace/docker/my-app/
