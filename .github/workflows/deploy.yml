@@ -33,7 +33,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY}}
           script: |
             cd ~/docker
-            docker compose pull my-app-app_backend
+            docker compose pull app_backend
             docker compose up -d 
             
 
