@@ -39,6 +39,7 @@ def crear_tabla():
 @app.route("/", methods = ["GET"])
 def home () :
 	aprendices = []
+	db_status = "Error: Sin conexión a la base de datos"
 	try:
 		conn = pymysql.connect(**BD_CONFIG)
 		with conn.cursor() as cursor:
