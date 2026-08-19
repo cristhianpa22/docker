@@ -45,6 +45,7 @@ def home () :
 			cursor.execute("SELECT * FROM aprendices ORDER BY creado_en DESC")
 			aprendices = cursor.fetchall()
 		conn.close()
+		db_status = "conectado"
 	except Exception as e:
 		print (f"error al obtener los aprendices: {e}")
 
