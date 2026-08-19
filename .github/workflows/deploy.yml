@@ -25,6 +25,7 @@ jobs:
           context: .
           push: true
           tags: cristhianpa22/my-app-app_backend:latest
+          no-cache: true
       - name: Desplegar en servidor cloud
         uses: appleboy/ssh-action@v1.0.3
         with:
