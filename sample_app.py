@@ -45,11 +45,11 @@ def home () :
 			cursor.execute("SELECT * FROM aprendices ORDER BY creado_en DESC")
 			aprendices = cursor.fetchall()
 		conn.close()
-		db_status = "conectado"
+		db_status = "Conectado y probando CI/CD"
 	except Exception as e:
 		print (f"error al obtener los aprendices: {e}")
 
-	return render_template("index.html", aprendices = aprendices)
+	return render_template("index.html", aprendices = aprendices, db_status = db_status)
 	
 @app.route("/registrar", methods = ["POST"])
 def registrar ():
