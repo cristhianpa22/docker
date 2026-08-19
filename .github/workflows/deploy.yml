@@ -34,7 +34,7 @@ jobs:
           script: |
             cd ~/docker
             docker compose pull app_backend
-            docker compose up -d 
+            docker compose up -d --force-recreate app_backend
             
 
 

@@ -32,8 +32,6 @@ services:
   app_backend:
     image: cristhianpa22/my-app-app_backend:latest
     container_name: app-backend-ejemplo
-    volumes:
-      - .:/home/capsdevp/Documentos/workspace/docker/my-app/
     environment:
       FLASK_ENV: development
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
