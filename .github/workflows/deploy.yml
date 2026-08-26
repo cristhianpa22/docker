@@ -27,7 +27,7 @@ jobs:
       - name: Escaneo de seguriad (bandit)
         run: bandit -r . -s B101
 
-      -name: Ejecutar pruebas pytest
+      - name: Ejecutar pruebas pytest
         run: pytest
         
         
