@@ -7,7 +7,7 @@ on:
   
 
 jobs: 
-  test:
+  test-and-security:
     runs-on: ubuntu-latest
     steps:
       - name: Descagar codigo
@@ -22,12 +22,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest
+          pip install pytest bandit
           
-      - name:  Ejecutar pruebas pytest
-        run: pytest 
+      - name: Escaneo de seguriad (bandit)
+        run: bandit -r . -s B101
+
+      -name: Ejecutar pruebas pytest
+        run: pytest
+        
+        
   build-and-push:
-    needs: test
+    needs: test-and-security
     runs-on: ubuntu-latest
     steps:
       - name: Descagar codigo
@@ -39,15 +44,30 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME}}
           password: ${{ secrets.DOCKER_PASSWORD}}
 
-      - name:  Construir y subir imagen 
+      - name:  Construir imagen 
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: cristhianpa22/my-app-app_backend:latest
+          load: false
           no-cache: true
+          tags: cristhianpa22/my-app-app_backend:latest
+
+      - name: Escanear contenedor con Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image: cristhianpa22/my-app-app_backend:latest
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os, library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Subir la imagen a Docker Hub
+        run: docker push cristhianpa22/my-app-app_backend:latest
+         
       - name: Desplegar en servidor cloud
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/addssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST}}
           username: ${{ secrets.SERVER_USER}}
