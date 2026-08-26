@@ -73,8 +73,8 @@ def registrar ():
 
 
 
-modo_debug = os.getenv("FLASK_DEBUG", "True")
-host = os.getenv("FLASK_HOST", "[IP_ADDRESS]")
+modo_debug = os.getenv("FLASK_DEBUG", "False").lower() == "true"
+host = os.getenv("FLASK_HOST", "0.0.0.0") 
 
 
 if __name__ == "__main__":
