@@ -56,7 +56,7 @@ jobs:
       - name: Escanear contenedor con Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image: cristhianpa22/my-app-app_backend:latest
+          image-ref: cristhianpa22/my-app-app_backend:latest
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
