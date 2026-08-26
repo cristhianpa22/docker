@@ -3,12 +3,14 @@ from flask import request
 from flask import render_template
 from flask import redirect
 import pymysql
+import os
+
 
 BD_CONFIG = {
 	"host": "servidor-bd",
 	"user": "root",
-	"password": "sena123",
-	"database": "adso_db",
+	"password": os.getenv("MYSQL_ROOT_PASSWORD"),
+	"database": os.getenv("MYSQL_DATABASE"),
 	"connect_timeout":3,
 	"cursorclass" : pymysql.cursors.DictCursor,
 	"autocommit":True
@@ -71,9 +73,10 @@ def registrar ():
 
 
 
+modo_debug = os.getenv("FLASK_DEBUG", "True")
+host = os.getenv("FLASK_HOST", "[IP_ADDRESS]")
 
 
 if __name__ == "__main__":
 	crear_tabla()
-	app.run(host = "0.0.0.0", port = 5050, debug=True)
-
+	app.run(host = host, port = 5050, debug=modo_debug)
