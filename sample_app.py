@@ -9,8 +9,8 @@ import os
 BD_CONFIG = {
 	"host": "servidor-bd",
 	"user": "root",
-	"password": os.getenv("MYSQL_ROOT_PASSWORD"),
-	"database": os.getenv("MYSQL_DATABASE"),
+	"password": "sena123",
+	"database": "adso_db",
 	"connect_timeout":3,
 	"cursorclass" : pymysql.cursors.DictCursor,
 	"autocommit":True
@@ -52,7 +52,7 @@ def home () :
 	except Exception as e:
 		print (f"error al obtener los aprendices: {e}")
 
-	return render_template("index.html", aprendices = aprendices, db_status = db_status)
+	return "Error interno del servidor", 500
 	
 @app.route("/registrar", methods = ["POST"])
 def registrar ():
