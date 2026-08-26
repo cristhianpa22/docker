@@ -52,7 +52,7 @@ def home () :
 	except Exception as e:
 		print (f"error al obtener los aprendices: {e}")
 
-	return "Error interno del servidor", 500
+	return render_template("index.html", aprendices = aprendices, db_status = db_status)
 	
 @app.route("/registrar", methods = ["POST"])
 def registrar ():
