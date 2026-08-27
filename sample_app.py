@@ -71,10 +71,10 @@ def registrar ():
 			print(f"Error al insertar aprendiz: {e}")		
 	return redirect("/")
 
-modo_debug = os.getenv("FLASK_DEBUG", "False")
-host = os.getenv("FLASK_HOST")
+modo_debug = os.getenv("FLASK_DEBUG", "False").lower() == "true"
+host = os.getenv("FLASK_HOST") or "0.0.0.0"
 
 if __name__ == "__main__":
 	
-	crear_tabla()
+	crear_tabla()|
 	app.run(host = host, port = 5050, debug=modo_debug)
