@@ -76,5 +76,5 @@ host = os.getenv("FLASK_HOST") or "0.0.0.0"
 
 if __name__ == "__main__":
 	
-	crear_tabla()|
+	crear_tabla()
 	app.run(host = host, port = 5050, debug=modo_debug)
