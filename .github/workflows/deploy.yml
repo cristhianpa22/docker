@@ -74,7 +74,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY}}
           script: |
             cd ~/docker
-            docker  pull app_backend
+            docker compose pull app_backend
             docker compose up -d --force-recreate app_backend
             
 
