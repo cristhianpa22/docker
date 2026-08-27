@@ -72,7 +72,7 @@ def registrar ():
 	return redirect("/")
 
 modo_debug = os.getenv("FLASK_DEBUG", "False").lower() == "true"
-host = os.getenv("FLASK_HOST") 
+host = os.getenv("FLASK_HOST") or "0.0.0.0"  # nosec B104
 
 if __name__ == "__main__":
 	
